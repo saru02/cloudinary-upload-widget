@@ -11,13 +11,15 @@
 
     <script type="text/javascript">
         var myWidget = cloudinary.createUploadWidget({
-            cloudName: 'tools010', 
-            uploadPreset: 'abrzb395', (error, result) => { 
-                if (!error && result && result.event === "success") { 
-                    console.log('Done! Here is the image info: ', result.info); 
-                }
+            cloudName: 'tools010',  // Your Cloudinary cloud name
+            uploadPreset: 'abrzb395'  // Your upload preset
+        }, function(error, result) {  // Use function instead of arrow function
+            if (!error && result && result.event === "success") {
+                console.log('Done! Here is the image info: ', result.info);
+            } else if (error) {
+                console.error('Error:', error);
             }
-        )
+        });
 
         document.getElementById("upload_widget").addEventListener("click", function(){
             myWidget.open();
